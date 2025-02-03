@@ -1,12 +1,21 @@
 ---
-import BaseLayout from '../layouts/Layout.astro';
-//import CodeList from '../components/CodeList.astro';
-//import { getCodes } from '../data/codes';
+import DefaultLayout from "../layouts/DefaultLayout.astro";
 
-//const codes = getCodes(); // Obtener la lista de códigos
+const algorithms = [
+  { title: "Segment Tree", url: "/segtree" },
+  { title: "Fenwick Tree", url: "/fenwick" },
+  { title: "Dijkstra", url: "/dijkstra" }
+];
 ---
 
-<BaseLayout>
-    <h1>Mi Biblioteca de Códigos</h1>
+<DefaultLayout title="Slime's CP Library ">
+  <h1>📚 Library</h1>
+  <p>Recopilación de estructuras de datos y algoritmos para competiciones.</p>
 
-</BaseLayout>
+  <ul>
+    {algorithms.map((algo) => (
+      <li><a href={algo.url}>{algo.title}</a></li>
+    ))}
+  </ul>
+</DefaultLayout>
+
