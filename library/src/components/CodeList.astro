@@ -1,0 +1,11 @@
+---
+const { codes } = Astro.props;
+---
+
+<ul>
+  {codes.map(code => (
+    <li>
+      <a href={`/code/${code.slug}`}>{code.title}</a>
+    </li>
+  ))}
+</ul>
