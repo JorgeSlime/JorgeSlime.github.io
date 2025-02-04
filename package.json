@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/vercel": "^8.0.5",
     "astro": "^5.2.3",
     "prismjs": "^1.29.0",
     "shiki": "^2.2.0"
