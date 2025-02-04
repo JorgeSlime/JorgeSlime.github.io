@@ -3,7 +3,8 @@ name: Deploy Astro site
 on:
   push:
     branches:
-      - main  # O la rama que uses en GitHub
+      - main  # Cambia si usas otra rama para producción
+  workflow_dispatch: # Permite ejecutar el workflow manualmente
 
 permissions:
   contents: read
@@ -23,18 +24,24 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm ci # Usa `npm ci` en lugar de `npm install` para builds más confiables
 
       - name: Build site
-        run: |
-          npm run build
+        run: npm run build
 
-      - name: Deploy to GitHub Pages
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist  # 🚀 Ahora toma "dist" directamente
+          path: dist  # Asegura que "dist" es el directorio correcto
 
-      - name: Publish to GitHub Pages
+  publish:
+    needs: deploy  # Espera a que el job "deploy" termine
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
 
