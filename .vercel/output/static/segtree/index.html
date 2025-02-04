@@ -1,0 +1,102 @@
+<!DOCTYPE html><h1>Segment Tree</h1> <p>Autor: Jorge</p> <pre><code class="language-cpp">//SegmentTree_Base 
+template&lt;class Info&gt;
+class SegTree{ 
+public: 
+    using inf = Info;
+    using T = typename inf::Type;
+    using TP = typename inf::Type_pos;
+    #define left node &lt;&lt; 1 
+    #define right node &lt;&lt; 1 | 1 
+    // --------------- datos---------------------
+    std::vector&lt;Info&gt; Tree;
+    TP log,size;
+    // ------------------------------------------
+    explicit SegTree() : size(TP(0)) {}
+    explicit SegTree(TP tam) : size(tam) {
+        log = 1;
+        while((1&lt;&lt;log) &lt; size) ++log;
+        size = 1&lt;&lt;log;
+        Tree.assign(size&lt;&lt;1,{inf::neutral()});
+    }
+    explicit SegTree(std::vector&lt;T&gt; &amp;ar){
+        size = sz(ar);    
+        log = 1;
+        while((1&lt;&lt;log)&lt;size) ++log;
+        size = 1&lt;&lt;log;
+        Tree.assign(size&lt;&lt;1,{inf::neutral()});
+        init(ar);
+    }
+    void set(int k, Info x) { Tree[k + size] = x; }
+
+    Info &amp;operator[](const TP &amp;pos) { return Tree[pos + size]; }
+
+    inline constexpr void modify(T node){
+        Tree[node] = inf::Merge(Tree[left],Tree[right]);
+    }
+
+    void init(const std::vector&lt;T&gt; &amp;ar){
+        i32 tam = (i32)ar.size();
+        for(auto i = 0; i&lt;tam ; i++) Tree[size + i]={
+            ar[i]
+        }; // cantidad de operaciones
+        for(int i = size - 1 ; i ; i--) modify(i);
+    }
+
+    void update(TP node, TP nl, TP nr, TP pos,T v) {
+        if(nl &gt; pos || nr &lt; pos) return;
+        if(nr==nl) {
+            Tree[node] = {v}; //asignacion 
+        } 
+        else {
+            T mid = (nl + nr) &gt;&gt; 1;
+            if(pos &lt;= mid) update(left, nl, mid, pos, v);
+            else update(right, mid + 1, nr, pos, v);
+            modify(node);
+        }
+    }
+
+    void update(TP pos ,TP val){
+        update(1, 0, size-1, pos, val);
+    }
+
+    Info query(TP node, TP nl, TP nr, TP ql, TP qr) {
+        if (ql &lt;= nl &amp;&amp; nr &lt;= qr)  return Tree[node];
+        TP mid = (nl + nr) &gt;&gt; 1;
+        if (qr &lt;= mid) return query(left, nl, mid, ql, qr);
+        if (ql &gt; mid) return query(right, mid + 1, nr, ql, qr);
+        return inf::Merge(query(left, nl, mid, ql, qr), query(right, mid + 1, nr, ql, qr));
+    }
+
+    Info query(TP l, TP r){
+        return query(1, 0, size-1, l, r);
+    }
+    
+
+    // nos falta aprender min_right  &amp; max_left :(
+};
+//-------------------Monoides----------------------
+
+//-------------------------------------------------
+template &lt;typename X&gt;
+class Node{
+public: 
+    using Type=X;
+    using Type_pos=i32;
+    //-------------------Monoides----------------------
+    using op = 
+    //-------------------------------------------------
+    static constexpr Node Merge(const Node &amp;x, const Node &amp;y) noexcept{
+        return {
+            op::(x.val,y.val)
+        };
+    }
+    //NULL val para cada tipo de operacion 
+    static constexpr Node neutral() { 
+        return{
+            op::neutral()
+        };
+    }
+    //----------------variables----------------
+    X val;
+};
+</code></pre>
