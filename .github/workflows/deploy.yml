@@ -34,14 +34,3 @@ jobs:
         with:
           path: dist  # Asegura que "dist" es el directorio correcto
 
-  publish:
-    needs: deploy  # Espera a que el job "deploy" termine
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-
-    steps:
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
-
