@@ -1,3 +1,4 @@
+//nose haber si da
 //SegmentTree_Base 
 template<class Info>
 class SegTree{ 
