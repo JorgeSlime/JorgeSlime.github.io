@@ -1,15 +1,7 @@
 ---
-const posts = await import.meta.glob('../codes/*.md', { eager: true });
-
-// Encuentra el post correcto (por ahora solo tenemos uno)
-const greatPost = posts['../codes/segtree.md'];
-
-const res = await fetch(greatPost.frontmatter.code);
+const res = await fetch("https://raw.githubusercontent.com/JorgeSlime/Slime-s-Library/main/codescpp/segtree.hpp");
 const code = await res.text();
+import { Code } from 'astro:components';
 ---
-
-<h1>{greatPost.frontmatter.title}</h1>
-<p>Autor: {greatPost.frontmatter.author}</p>
-
-<pre><code class="language-cpp">{code}</code></pre>
+<Code code={code} lang="cpp" />
 
