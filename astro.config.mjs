@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel';
-import mdx from '@astrojs/mdx';
+import vercel from '@astrojs/vercel'; // para deploy
+import mdx from '@astrojs/mdx'; 
+import tailwind from '@astrojs/tailwind';
 export default defineConfig({
     site: 'https://jorgeslime.github.io/Slime-s-Library/',
     // base: '/Slime-s-Library/',
@@ -10,6 +11,6 @@ export default defineConfig({
         },
     },
     adapter: vercel(),
-    integrations: [mdx()],
+    integrations: [mdx(), tailwind()],
 
 });
