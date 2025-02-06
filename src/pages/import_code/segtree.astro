@@ -1,7 +1,7 @@
 ---
 import { Code } from 'astro/components';
 
-const res = await fetch("https://raw.githubusercontent.com/JorgeSlime/Slime-s-Library/main/codescpp/segtree.hpp");
+const res = await fetch('https://raw.githubusercontent.com/JorgeSlime/JorgeSlime.github.io/refs/heads/main/codescpp/segtree.hpp');
 const code = await res.text();
 ---
 <Code code={code} lang="cpp" />
