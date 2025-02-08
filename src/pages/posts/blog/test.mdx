@@ -1,0 +1,80 @@
+---
+title: "Print template for c++ 20"
+date: "2025-07-01"
+author: "Jorge Tapia"
+description: "C++20 introduce mejoras importantes que facilitan y optimizan el trabajo con datos y funciones, especialmente cuando se trata de la impresión de datos de manera eficiente. En este artículo, exploramos cómo las nuevas características de C++20, como las plantillas, el uso de `if constexpr` y las `ranges`, pueden hacer que el código sea más claro y fácil de mantener."
+---
+
+
+```mdx
+# C++20: Mejorando la impresión de datos con funciones modernas
+
+C++20 introduce mejoras importantes que facilitan y optimizan el trabajo con datos y funciones, especialmente cuando se trata de la impresión de datos de manera eficiente. En este artículo, exploramos cómo las nuevas características de C++20, como las plantillas, el uso de `if constexpr` y las `ranges`, pueden hacer que el código sea más claro y fácil de mantener.
+
+## Ventajas de las funciones de impresión modernas
+
+Una de las mejoras clave que introduce C++20 son las capacidades de impresión con plantillas y `if constexpr`. Estas herramientas permiten un código más limpio y flexible. A continuación se muestra un conjunto de funciones de impresión que aprovechan estas características para simplificar el trabajo de imprimir datos en la consola.
+
+### Funciones de impresión con `print`
+
+Una de las principales ventajas de usar `if constexpr` y las plantillas en C++20 es que podemos manejar diferentes tipos de datos de manera eficiente y segura. Aquí tienes un ejemplo de una función `print` que acepta múltiples tipos y los imprime de manera sencilla:
+
+```cpp
+inline namespace Print20{
+    #define forn(i,n) for(auto i=0;i<n;i++)
+    template <class H, class... T> 
+    inline void print(H &&head, T&&...tail) {
+        std::cout << head;
+        if constexpr (sizeof...(tail)>0) { 
+            std::cout << ' ';
+            print(std::forward<T>(tail)...); 
+        }
+        else std::cout << '\n';
+    }
+}
+```
+
+Esta función es capaz de imprimir cualquier número de elementos de diferentes tipos, separándolos por espacios, lo que facilita la impresión de colecciones o múltiples variables.
+
+### Impresión de contenedores con `std::ranges`
+
+Otro avance importante es el uso de `std::ranges` para trabajar con contenedores de manera más expresiva. La función `print_` puede manejar tanto contenedores como valores individuales:
+
+```cpp
+template <typename X> 
+inline void print_(const X &c) {
+    if constexpr (std::ranges::range<X> && !std::same_as<X, std::string>) {
+        std::ranges::for_each(c, [](const auto &x) { std::cout << x << ' '; });
+        std::cout << '\n';
+    } else std::cout << c << '\n';
+}
+```
+
+Esta versión de `print_` automáticamente detecta si el tipo de entrada es un rango, como un vector o lista, y lo recorre para imprimir sus elementos, sin necesidad de usar bucles explícitos.
+
+### Impresión de matrices
+
+Si trabajas con matrices bidimensionales o incluso tridimensionales, C++20 facilita la impresión de estos datos complejos gracias a las plantillas y las nuevas funciones de impresión:
+
+```cpp
+template<typename T> 
+void print_mat(const T& mat) {
+    for(auto &i : mat) {
+        for(auto &j : i) { 
+            std::cout << j << " ";
+        }
+        std::cout << '\n';
+    }
+}
+```
+
+### Resumen de ventajas
+
+- **Código más limpio**: Gracias a las plantillas y `if constexpr`, el código es más flexible y modular, evitando la necesidad de escribir múltiples funciones para diferentes tipos.
+- **Mayor eficiencia**: Se reduce la duplicación de código y se hace más eficiente el manejo de colecciones y matrices.
+- **Manejo de rangos**: Con `std::ranges`, podemos manejar contenedores de manera más intuitiva y menos propensa a errores.
+
+C++20 facilita mucho la tarea de imprimir datos de manera limpia y eficiente, especialmente al trabajar con colecciones complejas. Si no has comenzado a aprovechar estas características, ¡es hora de comenzar!
+```
+
+Este blog cubre las mejoras importantes en C++20 para la impresión de datos de manera eficiente, usando funciones modernas basadas en plantillas y `ranges`.

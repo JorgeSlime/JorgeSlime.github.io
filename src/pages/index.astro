@@ -1,31 +1,23 @@
 ---
-import DefaultLayout from "../layouts/DefaultLayout.astro";
-const posts = Object.values(import.meta.glob('./blog/*.mdx',{ eager: true }));
+import Layout from '../layouts/Layout.astro';
+
+const posts = Object.values(import.meta.glob('./posts/blog/*.mdx', { eager: true }));
 ---
 
-<DefaultLayout title="Slime's CP Library">
-  <!-- Contenedor principal centrado con fondo -->
-  <div class="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-6">
-    
-    <!-- Tarjeta principal -->
-    <div class="max-w-3xl w-full bg-gray-800 shadow-lg rounded-lg p-8">
-      <h1 class="text-4xl font-bold text-center text-blue-400">📚 Slime's CP Library</h1>
-      <p class="mt-4 text-gray-300 text-center">
-        Recopilación de estructuras de datos y algoritmos para competiciones.
-      </p>
+<Layout>
+  <h1 class="text-3xl font-bold mb-6">Últimos Posts</h1>
 
-      <!-- Lista de blogs -->
-      <ul class="mt-6 space-y-4">
-        {posts.map((post) => (
-          <li class="bg-gray-700 hover:bg-gray-600 transition-all duration-300 p-4 rounded-lg text-center">
-            <a href={post.url} class="text-lg font-semibold text-blue-300 hover:text-blue-500">
-              {post.frontmatter.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-
+  <div class="space-y-4">
+    {posts.length > 0 ? (
+      posts.map((post) => (
+        <a href={post.url} class="block p-4 bg-white shadow-md rounded hover:bg-gray-50">
+          <h2 class="text-xl font-semibold">{post.frontmatter.title}</h2>
+          <p class="text-gray-600">{post.frontmatter.description}</p>
+        </a>
+      ))
+    ) : (
+      <p class="text-gray-500">No hay posts disponibles.</p>
+    )}
   </div>
-</DefaultLayout>
+</Layout>
 
