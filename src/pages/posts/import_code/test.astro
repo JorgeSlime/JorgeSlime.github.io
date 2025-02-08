@@ -1,0 +1,11 @@
+---
+const { url = "https://raw.githubusercontent.com/JorgeSlime/JorgeSlime.github.io/refs/heads/main/codescpp/segtree.hpp", lang = "cpp", title = "Código" } = Astro.props;
+
+const res = await fetch(url);
+const code = await res.text();
+
+import { Code } from "astro-expressive-code/components";
+---
+
+<Code code={code} lang={lang} title={title} />
+

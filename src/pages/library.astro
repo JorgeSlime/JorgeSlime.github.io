@@ -1,27 +1,41 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Sidebar from '../layouts/LibrarySideBar.astro';
+
 const posts = Object.values(import.meta.glob('./posts/library/*.mdx', { eager: true }));
+
+// Agrupar posts por categoría
+const groupedPosts = posts.reduce((acc, post) => {
+  const category = post.frontmatter.category || "Otros";
+  if (!acc[category]) acc[category] = [];
+  acc[category].push(post);
+  return acc;
+}, {});
 ---
 
 <Layout>
-  <section class="container mx-auto p-8">
-    <h1 class="text-3xl font-bold text-center">📚 Slime's Library</h1>
-    <p class="text-center text-gray-500 mt-4">Explora recursos y estructuras de datos para programación competitiva.</p>
+  <div class="flex">
+    <Sidebar groupedPosts={groupedPosts} />
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
-        {posts.length > 0 ? (
-            posts.map((post) => (
-                <a href={post.url} class="block p-4 bg-white shadow-md rounded hover:bg-gray-50">
-                    <h2 class="text-xl font-semibold">{post.frontmatter.title}</h2>
-                    <p class="text-gray-600">{post.frontmatter.description}</p>
-                 </a>
-            ))
-        ) : (
-            <p class="text-gray-500">No hay posts disponibles.</p>
-        )}
+    <!-- Contenido Principal -->
+    <section class="flex-1 p-8">
+      <h1 class="text-3xl font-bold text-center">📚 Slime's Library</h1>
+      <p class="text-center text-gray-500 mt-4">Explora estructuras de datos y algoritmos para programación competitiva.</p>
 
-      </div>
-    </div>
-  </section>
+      {Object.entries(groupedPosts).map(([category, posts]) => (
+        <div id={category.replace(/\s+/g, '-')} class="mt-8">
+          <h2 class="text-2xl font-semibold mb-4 border-b pb-2">{category}</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {posts.map((post) => (
+              <a href={post.url} class="block p-4 bg-white shadow-md rounded hover:bg-gray-50">
+                <h3 class="text-xl font-semibold">{post.frontmatter.title}</h3>
+                <p class="text-gray-600">{post.frontmatter.description}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+  </div>
 </Layout>
 

@@ -1,0 +1,19 @@
+---
+const groupedPosts = Astro.props.groupedPosts || {};
+---
+
+<aside class="w-64 h-screen sticky top-0 p-4 bg-gray-100 shadow-md overflow-y-auto">
+  <h2 class="text-lg font-semibold mb-4">📚 Categorías</h2>
+  <nav>
+    <ul>
+      {Object.keys(groupedPosts).map((category) => (
+        <li class="mb-2">
+          <a href={`#${category.replace(/\s+/g, '-')}`} class="text-blue-600 hover:underline">
+            {category}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</aside>
+

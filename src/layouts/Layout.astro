@@ -1,6 +1,7 @@
 ---
-// import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
+const { groupedPosts } = Astro.props;
+const hasSidebar = !!Astro.slots.sidebar;
 ---
 
 <html lang="es">
@@ -12,9 +13,16 @@ import Navbar from '../components/Navbar.astro';
   </head>
   <body class="bg-gray-100 text-gray-900">
     <Navbar />
-    <main class="container mx-auto p-6">
-      <slot />
-    </main>
+    
+    <div class="flex">
+      {hasSidebar && <aside class="w-64 h-screen sticky top-0 p-4 bg-gray-100 shadow-md overflow-y-auto">
+        <slot name="sidebar" groupedPosts={groupedPosts} />
+      </aside>}
+      
+      <main class="flex-1 container mx-auto p-6">
+        <slot />
+      </main>
+    </div>
   </body>
 </html>
 

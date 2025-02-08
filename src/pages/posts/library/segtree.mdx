@@ -1,15 +1,21 @@
 ---
 title: "Segment Tree"
-date: "2025-04-01"
-author: "Jorge"
+date: "2025-02-08"
+author: "Jorge Tapia"
+category: "Data Structures"
 description: "Implementación y explicación de Segment Tree para consultas en rangos."
 ---
 
 import Layout from '../../../layouts/Layout.astro';
-import CodeBlock from '../import_code/segtree.astro';
+import CodeBlock from '../import_code/test.astro';
+import Sidebar from '../../../layouts/LibrarySideBar.astro';
 
-<Layout>
-<div class="prose prose-sm prose-blue dark:prose-invert mx-auto max-w-3xl p-6 bg-gray-800 text-white rounded-lg shadow-lg">
+<Layout >
+  <div slot="sidebar">
+    <Sidebar />
+  </div>
+
+  <div class="prose prose-sm prose-blue dark:prose-invert mx-auto max-w-3xl p-6 bg-gray-800 text-white rounded-lg shadow-lg">
 
   # 🌲 Segment Tree
 
@@ -22,10 +28,9 @@ import CodeBlock from '../import_code/segtree.astro';
   - Permite realizar consultas en `O(log n)`.
 
   ## 📝 Implementación en C++
-  
-  <div class="text-xs md:text-sm font-mono bg-gray-900 p-3 rounded-lg shadow-lg overflow-x-auto">
-    <CodeBlock />
-  </div>
+    
+  <CodeBlock url="https://raw.githubusercontent.com/JorgeSlime/JorgeSlime.github.io/refs/heads/main/codescpp/segtree.hpp"
+           lang="cpp" title="segtree.cpp"  />
 
   ## 🔗 Recursos y Problemas Recomendados
 
@@ -33,11 +38,10 @@ import CodeBlock from '../import_code/segtree.astro';
   - [Problema: Range Minimum Query](https://cses.fi/problemset/task/1649)
   - [Video explicativo en YouTube](https://www.youtube.com/watch?v=0jWeUdxrGm4)
 
-</div>
-<div style="margin-top: 20px;">
-    <a href="/blog"> ⬅ Volver atras </a>
-</div>
+  </div>
+  <div style="margin-top: 20px;">
+    <a href="/library"> ⬅ Volver atrás </a>
+  </div>
 
 </Layout>
-
 

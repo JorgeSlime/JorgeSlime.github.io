@@ -1,0 +1,29 @@
+---
+title: "Mos"
+author: "Jorge Tapia"
+date: "2025-04-01"
+categories: "Data Structures"
+---
+
+import Layout from '../../../layouts/Layout.astro';
+import CodeBlock from '../import_code/test.astro';
+
+<Layout>
+<div class="prose prose-sm prose-blue dark:prose-invert mx-auto max-w-3xl p-6 bg-gray-800 text-white rounded-lg shadow-lg">
+
+  # 🌲 Mos algorithm 
+   El mos algorithm es un algoritmo que permite responder consultas offline en un rango de un arreglo. Este algoritmo es muy útil cuando se tienen consultas de rango en un arreglo y se pueden responder en `O((n + q) * sqrt(n))`.    
+        
+
+  ## 📝 Implementación en C++
+    
+<CodeBlock url="https://raw.githubusercontent.com/maspypy/library/refs/heads/main/ds/offline_query/mo.hpp"
+           lang="cpp" title="Mos.cpp"  />
+
+  ## 🔗 Recursos y Problemas Recomendados
+</div>
+<div style="margin-top: 20px;">
+    <a href="/library"> ⬅ Volver atrás </a>
+</div>
+
+</Layout>
