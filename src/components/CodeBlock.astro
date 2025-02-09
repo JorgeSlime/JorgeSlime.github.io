@@ -1,6 +1,9 @@
 ---
-const { code, language = "cpp" } = Astro.props;
+const { title } = Astro.props;
 ---
 
-<pre><code class={`language-${language}`}>{code}</code></pre>
+<div class="prose prose-sm prose-blue dark:prose-invert mx-auto max-w-3xl p-6 bg-black text-white rounded-lg shadow-lg">
+    <h1 class="text-2xl font-bold mb-4">{title}</h1>
+    <slot />
+</div>
 

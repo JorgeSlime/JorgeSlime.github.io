@@ -2,16 +2,15 @@
 title: "Mos"
 author: "Jorge Tapia"
 date: "2025-04-01"
-categories: "Data Structures"
+category: "Data Structures"
 ---
 
 import Layout from '../../../layouts/Layout.astro';
 import CodeBlock from '../import_code/test.astro';
+import CodeStyle from '../../../components/CodeBlock.astro';
 
 <Layout>
-<div class="prose prose-sm prose-blue dark:prose-invert mx-auto max-w-3xl p-6 bg-gray-800 text-white rounded-lg shadow-lg">
-
-  # 🌲 Mos algorithm 
+ <CodeStyle title="Mos algorithm">
    El mos algorithm es un algoritmo que permite responder consultas offline en un rango de un arreglo. Este algoritmo es muy útil cuando se tienen consultas de rango en un arreglo y se pueden responder en `O((n + q) * sqrt(n))`.    
         
 
@@ -21,7 +20,7 @@ import CodeBlock from '../import_code/test.astro';
            lang="cpp" title="Mos.cpp"  />
 
   ## 🔗 Recursos y Problemas Recomendados
-</div>
+ </CodeStyle >
 <div style="margin-top: 20px;">
     <a href="/library"> ⬅ Volver atrás </a>
 </div>

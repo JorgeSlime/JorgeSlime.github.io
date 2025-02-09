@@ -8,37 +8,33 @@ description: "Implementación y explicación de Segment Tree para consultas en r
 
 import Layout from '../../../layouts/Layout.astro';
 import CodeBlock from '../import_code/test.astro';
-import Sidebar from '../../../layouts/LibrarySideBar.astro';
+import CodeStyle from '../../../components/CodeBlock.astro';
 
 <Layout >
-  <div slot="sidebar">
-    <Sidebar />
-  </div>
+  <CodeStyle title="Segmet Tree Simple">
+    
+   - [view this file on github](https://github.com/JorgeSlime/JorgeSlime.github.io/blob/main/codescpp/segtree.hpp)
+  
+     El **Segment Tree** es una estructura de datos que permite realizar consultas y actualizaciones en rangos de forma eficiente.
 
-  <div class="prose prose-sm prose-blue dark:prose-invert mx-auto max-w-3xl p-6 bg-gray-800 text-white rounded-lg shadow-lg">
-
-  # 🌲 Segment Tree
-
-  El **Segment Tree** es una estructura de datos que permite realizar consultas y actualizaciones en rangos de forma eficiente.
-
-  ## 📌 Conceptos Clave
+  ## Conceptos Clave
 
   - Se basa en un árbol binario.
   - Permite actualizar valores en `O(log n)`.
   - Permite realizar consultas en `O(log n)`.
 
-  ## 📝 Implementación en C++
+  ## Implementación en C++
     
-  <CodeBlock url="https://raw.githubusercontent.com/JorgeSlime/JorgeSlime.github.io/refs/heads/main/codescpp/segtree.hpp"
-           lang="cpp" title="segtree.cpp"  />
+  <CodeBlock url="https://raw.githubusercontent.com/JorgeSlime/cp-slime-library/refs/heads/main/Data_Structures/Segtree.hpp"
+           lang="cpp" title="segtree.hpp"  />
 
   ## 🔗 Recursos y Problemas Recomendados
 
   - [Segment Trees - cp-algorithms](https://cp-algorithms.com/data_structures/segment_tree.html)
   - [Problema: Range Minimum Query](https://cses.fi/problemset/task/1649)
   - [Video explicativo en YouTube](https://www.youtube.com/watch?v=0jWeUdxrGm4)
-
-  </div>
+        
+ </CodeStyle >
   <div style="margin-top: 20px;">
     <a href="/library"> ⬅ Volver atrás </a>
   </div>
