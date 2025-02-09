@@ -1,8 +1,23 @@
 ---
-import { Code } from 'astro/components';
+const { 
+  url = "https://raw.githubusercontent.com/JorgeSlime/JorgeSlime.github.io/refs/heads/main/codescpp/segtree.hpp"
+} = Astro.props;
 
-const res = await fetch('https://raw.githubusercontent.com/JorgeSlime/JorgeSlime.github.io/refs/heads/main/codescpp/segtree.hpp');
-const code = await res.text();
+const commitApiUrl = `https://api.github.com/repos/JorgeSlime/JorgeSlime.github.io/commits?path=${url.split('/main/')[1]}&page=1&per_page=1`;
+
+const [codeRes, commitRes] = await Promise.all([
+  fetch(url),         // Obtener código fuente
+  fetch(commitApiUrl) // Obtener el último commit
+]);
+
+const code = await codeRes.text();
+const commitData = await commitRes.json();
+
+let lastUpdated = "No disponible";
+if (commitData.length > 0) {
+  lastUpdated = new Date(commitData[0].commit.committer.date).toLocaleDateString();
+}
+
+export { code, lastUpdated };
 ---
-<Code code={code} lang="cpp"/>
 
