@@ -19,17 +19,17 @@ const groupedPosts = posts.reduce((acc, post) => {
 
     <!-- Contenido Principal -->
     <section class="flex-1 p-8">
-      <h1 class="text-3xl font-bold text-center">📚 Slime's Library</h1>
-      <p class="text-center text-gray-500 mt-4">Explora estructuras de datos y algoritmos para programación competitiva.</p>
+      <h1 class="text-3xl font-mono text-center">📚 Slime's Library</h1>
+      <p class="text-center text-xs font-mono text-slate-200 mt-4">Explora estructuras de datos y algoritmos para programación competitiva en C++.</p>
 
       {Object.entries(groupedPosts).map(([category, posts]) => (
         <div id={category.replace(/\s+/g, '-')} class="mt-8">
           <h2 class="text-2xl font-semibold mb-4 border-b pb-2">{category}</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {posts.map((post) => (
-              <a href={post.url} class="block p-4 bg-white shadow-md rounded hover:bg-gray-50">
+              <a href={post.url} class="block p-4 bg-zinc-950 shadow-md rounded hover:bg-lime-800">
                 <h3 class="text-xl font-semibold">{post.frontmatter.title}</h3>
-                <p class="text-gray-600">{post.frontmatter.description}</p>
+                <p class="text-gray-400 font-light">{post.frontmatter.description}</p>
               </a>
             ))}
           </div>

@@ -10,9 +10,9 @@ const posts = Object.values(import.meta.glob('./posts/blog/*.mdx', { eager: true
   <div class="space-y-4">
     {posts.length > 0 ? (
       posts.map((post) => (
-        <a href={post.url} class="block p-4 bg-white shadow-md rounded hover:bg-gray-50">
+        <a href={post.url} class="block p-4 bg-zinc-950 shadow-md rounded hover:bg-lime-800">
           <h2 class="text-xl font-semibold">{post.frontmatter.title}</h2>
-          <p class="text-gray-600">{post.frontmatter.description}</p>
+          <p class="text-gray-400 font-light">{post.frontmatter.description}</p>
         </a>
       ))
     ) : (

@@ -1,0 +1,9 @@
+---
+const { file } = Astro.props;
+
+const response = await fetch(`${import.meta.env.SITE}/api/github?file=${file}`);
+const { lastUpdate } = await response.json();
+---
+
+<p class="text-gray-400 text-sm mt-2">Última actualización: {new Date(lastUpdate).toLocaleDateString()}</p>
+

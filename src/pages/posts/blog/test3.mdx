@@ -1,0 +1,10 @@
+---
+title: "Test 3 with latex"
+description: "create component latex for mdx"
+---
+
+import Latex from '../../../components/Latex.astro';
+export const f1 = '\\begin{bmatrix}a & b \\\\ c & d\\end{bmatrix}';
+
+<Latex formula='2^4' /> 
+<Latex formula={f1} />
