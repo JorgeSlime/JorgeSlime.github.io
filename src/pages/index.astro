@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
 const posts = Object.values(import.meta.glob('./posts/blog/*.mdx', { eager: true }));
 ---
 
@@ -20,4 +19,5 @@ const posts = Object.values(import.meta.glob('./posts/blog/*.mdx', { eager: true
     )}
   </div>
 </Layout>
+
 

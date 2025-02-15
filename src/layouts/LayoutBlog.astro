@@ -1,0 +1,42 @@
+---
+import Navbar from '../components/Navbar.astro';
+import { Toc } from "../components/Toc.astro";
+const { groupedPosts } = Astro.props;
+const { title } = Astro.props;
+const hasSidebar = !!Astro.slots.sidebar;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Victor+Mono:wght@100..700&display=swap" rel="stylesheet">
+    <!-- tailwindcss -->
+    <link rel="stylesheet" href="/styles/global.css" />
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj+VczCZtlzBcjt5ppRcsAmDnRem7ESsYwWwg3m/OaJ2l4x7YBZl9Kxxib" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <title>JorgeSlime-Blog</title>
+  </head>
+  <body class="bg-zinc-900 text-slate-300">
+    <Navbar />
+    <div class="flex">
+      {hasSidebar && <aside class="w-64 h-screen sticky top-0 p-4 bg-gray-100 shadow-md overflow-y-auto">
+        <slot name="sidebar" groupedPosts={groupedPosts} />
+      </aside>}
+      
+      <main class="flex-1 container mx-auto p-6">      
+    <div class="prose prose-sm prose-blue dark:prose-invert mx-auto max-w-3xl p-6 bg-zinc-950 text-slate-300 font-mono rounded-lg shadow-lg">
+        <h1 class="text-2xl font-mono mb-4 text-slate-200 hover:underline ">{title}</h1>
+        <slot />
+    </div>
+      </main>
+    </div>
+  </body>
+</html>
+

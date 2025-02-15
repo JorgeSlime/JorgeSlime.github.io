@@ -1,0 +1,30 @@
+---
+import { h } from 'hastscript';
+import { toString } from 'hast-util-to-string';
+import { visit } from 'unist-util-visit';
+const { content } = Astro.props;
+
+// Extrae los encabezados del contenido
+const toc = [];
+visit(content, 'element', (node) => {
+  if (node.tagName && /^h[1-6]$/.test(node.tagName)) {
+    toc.push({
+      id: node.properties.id,
+      text: toString(node),
+      level: parseInt(node.tagName.charAt(1))
+    });
+  }
+});
+---
+
+<nav class="toc">
+  <h2>Índice</h2>
+  <ul>
+    {toc.map((item) => (
+      <li class={`toc-item level-${item.level}`}>
+        <a href={`#${item.id}`}>{item.text}</a>
+      </li>
+    ))}
+  </ul>
+</nav>
+

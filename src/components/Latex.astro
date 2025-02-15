@@ -1,11 +1,11 @@
 ---
 import katex from 'katex';
 
-const { formula = '', className = '' } = Astro.props;  
+const { formula = '', classname = '' } = Astro.props;  
 const html = katex.renderToString(formula, { throwOnError: false });
 ---
 
-<div class={` ${className} `}>
+<div class={` ${classname} `}>
 	<span set:html={html} />
 </div>
 
