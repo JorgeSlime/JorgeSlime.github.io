@@ -49,7 +49,6 @@ Podemos notar que el problema tiene dos propiedades clave de la **Programación 
 Como podemos ver en el siguiente gráfico su forma  recursiva y en donde podemos optimizar con __dp__:
 En el gráfico podemos observar que contamos las hojas del árbol que queda en $0$ pero también notamos que se repiten los resultados como en el $1$ que aparece dos veces para esto usaremos `dp` para evitar volver a bajar por el árbol de recursión.
 
-![img1](./img1.png)
 
 ### **Construcción del DP**
 
