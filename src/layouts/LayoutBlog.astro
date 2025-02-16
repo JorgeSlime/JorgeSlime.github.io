@@ -23,20 +23,25 @@ const hasSidebar = !!Astro.slots.sidebar;
         onload="renderMathInElement(document.body);"></script>
     <title>JorgeSlime-Blog</title>
   </head>
-  <body class="bg-zinc-900 text-slate-300">
+  <body class="bg-zinc-900 text-white">
     <Navbar />
     <div class="flex">
       {hasSidebar && <aside class="w-64 h-screen sticky top-0 p-4 bg-gray-100 shadow-md overflow-y-auto">
         <slot name="sidebar" groupedPosts={groupedPosts} />
       </aside>}
       
-      <main class="flex-1 container mx-auto p-6">      
-    <div class="prose prose-sm prose-blue dark:prose-invert mx-auto max-w-3xl p-6 bg-zinc-950 text-slate-300 font-mono rounded-lg shadow-lg">
-        <h1 class="text-2xl font-mono mb-4 text-slate-200 hover:underline ">{title}</h1>
+      <main class="flex-1 container ml-1 p-6">      
+        <div class="prose prose-sm prose-blue dark:prose-invert mx-auto max-w-6xl p-6 
+              bg-zinc-950 text-white font-mono rounded-lg shadow-lg">
+        <h1 class="text-2xl font-mono mb-4 text-white hover:underline ">{title}</h1>
         <slot />
+        <div style="margin-top: 20px;">
+            <a href="/library"> ⬅ Volver atrás </a>
+        </div>
     </div>
       </main>
     </div>
+   
   </body>
 </html>
 
